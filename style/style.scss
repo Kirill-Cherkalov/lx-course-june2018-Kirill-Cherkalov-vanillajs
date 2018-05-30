@@ -1,0 +1,403 @@
+@mixin large-text {
+    font: {
+        family: 'PT Serif', serif;
+        size: 20px;
+        weight: 700;
+    }
+    line-height: 24px;
+}
+
+@mixin lower-text {
+    font: {
+        family: 'PT Serif', serif;
+        size: 16px;
+        weight: 400;
+    }
+    line-height: 18px;
+    color: gray;
+}
+
+@mixin normal-text {
+    font: {
+        family: 'PT Serif', serif;
+        size: 18px;
+        weight: 500;
+    }
+    line-height: 20px;
+}
+
+// ------------------------
+body {
+    @include lower-text;
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.orders-side {
+    flex-basis: 400px;
+    .orders-header {
+        min-height: 55px;
+        padding-bottom: 2px;
+        text-align: center;
+        box-sizing: border-box;
+        position: relative;
+        .orders-side_title {
+            margin: 0;
+            padding: 5px 0 10px 0;
+            &::before {
+                content: "";
+                position: absolute;
+                left: 4px;
+                right: 35px;
+                width: 20px;
+                height: 20px;
+                background-image: url('../img/icons8-шеврон-влево-24.png');
+                background-size: cover;
+                background-color: transparent;
+                cursor: pointer;
+            }
+        }
+        .order-side_input {
+            box-sizing: border-box;
+            padding: 1px 0 1px 10px;
+            width: 98%;
+            &::-webkit-input-placeholder {
+                font-style: italic;
+            }
+        }
+        &::after,
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: 4px;
+            right: 35px;
+            width: 17px;
+            height: 17px;
+            background-image: url('../img/icons8-поиск-50.png');
+            background-size: cover;
+            background-color: transparent;
+            cursor: pointer;
+        }
+        &::before {
+            right: 10px;
+            background-image: url('../img/icons8-обновить-32.png');
+        }
+    }
+    .orders-list {
+        height: calc(100vh - 100px);
+        overflow-y: scroll;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-color: #777;
+            background-color: #aaa;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            border-color: #555;
+            background-color: #777;
+        }
+        .orders_table {
+            width: 100%;
+        }
+        .orders-list_item {
+            padding: 10px 10px;
+            border-top: 1px solid lightgrey;
+            .table-row_item {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .orders_numb,
+            .orders_date {
+                padding-bottom: 9px;
+                @include normal-text;
+                color: #000;
+            }
+            .orders_date {
+                @include large-text;
+                font-weight: 500;
+            }
+            .orders_deliv,
+            .orders_time {
+                padding-bottom: 5px;
+            }
+            .orders_time {
+                color: green;
+            }
+            .orders_time--urgent {
+                color: orange;
+            }
+        }
+        .orders-list_item--active {
+            background-color: #e8eff7;
+        }
+    }
+    .orders-footer {
+        display: block;
+        width: 100%;
+        background-color: #2f3b47;
+        .footer-list {
+            list-style: none;
+            min-height: 100%;
+            padding: 10px 0 10px 0;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin: 0;
+            margin-top: 3px;
+        }
+        .footer-list_item {
+            vertical-align: middle;
+        }
+        .orders-footer_buttoon {
+            vertical-align: middle;
+            height: 17px;
+            width: 17px;
+            background-image: url('../img/icons8-фильтр-32.png');
+            background-size: cover;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            margin-right: 30px;
+            cursor: pointer;
+        }
+        .orders-footer_buttoon--settings {
+            background-image: url('../img/icons8-сервисы-80.png');
+            margin-right: 15px;
+        }
+    }
+}
+
+//-----------------------------------------------------------------
+.info-side {
+    min-width: 500px;
+    width: 100%;
+    border-left: 2px solid #ebebeb;
+    .info-header {
+        text-align: center;
+        background-color: #eff4f8;
+        .header_title {
+            margin: 0;
+            padding: 5px 0 8px 0;
+            border-bottom: 1px solid #d0e0ed;
+        }
+    }
+    .general-info {
+        background-color: #eff4f8;
+        padding: 30px 20px 40px 20px;
+        .cap-info_table {
+            width: 100%;
+        }
+        .info-table_item {
+            display: flex;
+            justify-content: space-between;
+        }
+        .general-info_order-numb,
+        .general-info_order-price {
+            @include large-text;
+            color: #000;
+            font-weight: 500;
+        }
+        .general-info_order-currency {
+            @include lower-text;
+            color: #000;
+        }
+    }
+    .general-info_list {
+        margin: 0;
+        list-style: none;
+        padding: 0;
+        .geteral-info_item {
+            padding-bottom: 10px;
+        }
+    }
+    input[type="radio"].visually_hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        border: 0;
+    }
+    .general-filter {
+        list-style: none;
+        padding: 0;
+        margin-top: 40px;
+    }
+    .general-filter_item {
+        position: relative;
+        margin-right: 50px;
+    }
+    .general-filter_item input[type="radio"]+.radio-indicator {
+        content: "";
+        position: absolute;
+        left: 0px;
+        width: 50px;
+        height: 50px;
+        bottom: -35px;
+        background-image: url("../img/icons8-грузовая-машина-50.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-right: 50px;
+        opacity: 0.5;
+        cursor: pointer;
+    }
+    .general-filter_item input[type="radio"]:checked+.radio-indicator {
+        background-image: url("../img//icons8-грузовая-машина-80.ховерpng.png");
+        opacity: 1;
+    }
+    .general-filter_item:nth-child(2) input[type="radio"]+.radio-indicator {
+        background-image: url("../img/просточел.png");
+        background-size: cover;
+        left: 80px;
+    }
+    .general-filter_item:nth-child(2) input[type="radio"]:checked+.radio-indicator {
+        opacity: 1;
+        background-image: url("../img/челховер.png");
+    }
+    .general-filter_item input[type="radio"]:hover+.radio-indicator {
+        opacity: 1;
+    }
+
+    .radio-indicator::after {
+        content: "";
+        position: absolute;
+        top: 55px;
+        height: 2px;
+        width: 50px;
+        background-color: #427cac;
+        z-index: 2;
+    }
+
+    /*---------------------------------------------------*/
+    .deliv-table {
+        width: 100%;
+        border-top: 2px solid #cfe2f3;
+        border-bottom: 2px solid #cfe2f3;
+        position: relative;
+    }
+    .deliv-table-header {
+        padding: 30px 0 10px 20px;
+        text-align: start;
+    }
+    .deliv-table_item:nth-child(1) {
+        &::after {
+            content: "";
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            height: 1px;
+            top: 60px;
+            background-color: #cecece;
+        }
+    }
+    .deliv-table-header {
+        @include normal-text;
+        color: #000;
+    }
+    .deliv-table-param {
+        text-align: right;
+        padding-right: 10px;
+        width: 250px;
+    }
+    .deliv-table_item:nth-child(2) {
+        .deliv-table-param,
+        .deliv-table-value {
+            padding-top: 10px;
+        }
+    }
+    .deliv-table_item:nth-child(6) {
+        .deliv-table-param,
+        .deliv-table-value {
+            padding-bottom: 25px;
+        }
+    }
+    .deliv-table-value {
+        color: #000;
+    }
+    /*---------------------------------------------------------------*/
+    .prodict-line {
+        padding: 15px 10px 13px 20px;
+        background-color: #fafafa;
+    }
+    .prodict-line_title {
+        padding-top: 5px;
+        padding-bottom: 10px;
+        margin: 0;
+        @include normal-text;
+    }
+    .line-items_product {
+        padding: 3px 0 3px 10px;
+        width: 300px;
+    }
+    .line-items_table {
+        width: 100%;
+        border-collapse: collapse;
+        border-bottom: 2px solid #cdcdcd;
+        background-color: #fff;
+    }
+    .line-items_header {
+        border-bottom: 2px solid #e4e4e4;
+        border-top: 2px solid #e4e4e4;
+        @include lower-text;
+        padding: 10px 0 10px 10px;
+        background-color: #fafafa;
+        color: #000;
+    }
+    .line-items_header,
+    .line-items_price,
+    .line-items_quantity,
+    .line-items_total {
+        text-align: end;
+        padding-top: 5px;
+    }
+    .line-items_price {
+        width: 200px;
+    }
+    .line-items_header:nth-child(1) {
+        text-align: left;
+    }
+    .product_name {
+        display: block;
+        color: #000;
+        padding: 0 0 4px 0;
+        font-weight: 700;
+    }
+    .items-price_value,
+    .items-total_value {
+        font-weight: 700;
+    }
+    .general-footer {
+        display: block;
+        width: 100%;
+        background-color: #2f3b47;
+        .footer-list {
+            list-style: none;
+            min-height: 100%;
+            padding: 11px 0 11px 0;
+            margin: 0;
+        }
+        .general-footer_buttoon {
+            vertical-align: middle;
+            height: 18px;
+            display: block;
+            width: 18px;
+            background-image: url('../img/icons8-сообщение-50.png');
+            background-size: cover;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            margin-right: 15px;
+            margin-left: auto;
+            cursor: pointer;
+        }
+    }
+}
