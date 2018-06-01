@@ -1,0 +1,19 @@
+// width is 100% but min-width is min-width: 590px
+.info-side {
+    min-width: 590px;
+    width: 100%;
+    border-left: 2px solid #ebebeb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info-header {
+    text-align: center;
+    background-color: #eff4f8;
+    .header_title {
+        margin: 0;
+        padding: 5px 0 8px 0;
+        border-bottom: 1px solid #d0e0ed;
+    }
+}

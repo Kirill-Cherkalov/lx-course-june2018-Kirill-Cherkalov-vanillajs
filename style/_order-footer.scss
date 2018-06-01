@@ -1,0 +1,23 @@
+.orders-footer {
+    display: block;
+    width: 100%;
+    background-color: #2f3b47;
+    .footer-list {
+        list-style: none;
+        min-height: 100%;
+        padding: 5px 0 5px 0;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 0;
+    }
+}
+
+.orders-footer_buttoon {
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+.orders-footer_buttoon--settings {
+    margin-right: 15px;
+}

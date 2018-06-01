@@ -1,0 +1,47 @@
+.orders-header {
+    // min-height is 55px
+    min-height: 55px;
+    padding-bottom: 2px;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+    .orders-side_title {
+        margin: 0;
+        padding: 5px 0 10px 0;
+        &::before {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 6px;
+            width: 15px;
+            height: 15px;
+            background-image: url('../img/left-chevron.svg');
+            cursor: pointer;
+        }
+    }
+    .order-side_input {
+        box-sizing: border-box;
+        padding: 1px 0 1px 10px;
+        width: 98%;
+        &::-webkit-input-placeholder {
+            font-style: italic;
+        }
+    }
+    &::after,
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: 4px;
+        right: 35px;
+        width: 17px;
+        height: 17px;
+        background-image: url('../img/search.svg');
+        background-size: cover;
+        background-color: transparent;
+        cursor: pointer;
+    }
+    &::before {
+        right: 10px;
+        background-image: url('../img/update-arrows.svg');
+    }
+}

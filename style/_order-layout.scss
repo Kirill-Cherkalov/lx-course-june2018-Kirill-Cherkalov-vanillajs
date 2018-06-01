@@ -1,0 +1,57 @@
+.orders-list {
+    // height equally  $sprite_height but min-height is 680px
+    min-height: 680px;
+    height: $sprite_height;
+    overflow-y: scroll;
+    list-style: none;
+    min-width: 265px;
+    padding: 0;
+    margin: 0;
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-color: #777;
+        background-color: #aaa;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        border-color: #555;
+        background-color: #777;
+    }
+}
+
+.order-list_name,
+.order-list_place,
+.order-list_shipped {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-list_name {
+    padding-bottom: 9px;
+    @include normal-text;
+    color: #000;
+}
+
+.order-list_date {
+    @include large-text;
+    font-weight: 500;
+}
+
+.orders-list_item {
+    padding: 10px 10px;
+    border-top: 1px solid lightgrey;
+}
+
+.order-list_shipped {
+    margin: 5px 0 9px 0;
+}
+
+.order-list_time {
+    color: green;
+}
+
+.order-list_time--urgent {
+    color: orange;
+}

@@ -1,0 +1,17 @@
+body {
+    @include lower-text;
+    margin: 0;
+    background: linear-gradient(to bottom, rgb(190, 242, 255), rgb(234, 240, 241));
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    box-shadow: 0px -11px 48px 0px rgba(123,165,176,0.8);
+}
+
+.container {
+    max-width: 1640px;
+    margin: 0 auto;
+}
