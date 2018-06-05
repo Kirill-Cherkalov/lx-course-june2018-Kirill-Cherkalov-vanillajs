@@ -51,6 +51,11 @@ input[type="radio"].visually_hidden {
     margin-right: 50px;
 }
 
+.general-info_paragraph {
+    margin: 0;
+    padding: 0;
+}
+
 .general-filter_item input[type="radio"]+.radio-indicator {
     //settings for icon car & human
     content: "";

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Orders</title>
-    <link rel="stylesheet" href="style/normalize.css">
     <link href="https://fonts.googleapis.com/css?family=PT+Serif|Tajawal:400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="style/index.css">
 </head>
@@ -16,110 +15,11 @@
         <section class="orders-side">
             <header class="orders-header">
                 <p class="orders-side_title">Orders
-                    <span class="orders-title_numb">(10)</span>
+                    <span class="orders-title_numb"></span>
                 </p>
                 <input type="text" class="order-side_input" placeholder="Поиск">
             </header>
-            <ul class="orders-list">
-                <li class="orders-list_item">
-                    <p class="order-list_name">Order 7991
-                        <span class="order-list_date">21.11.2016</span>
-                    </p>
-                    <p class="order-list_place">Berglunds snabbkop
-                        <span class="order-list_time">In time</span>
-                    </p>
-                    <p class="order-list_shipped">Shipped: 26нояб. 2016г.</p>
-                </li>
-                <li class="orders-list_item">
-                    <p class="order-list_name">Order 7918
-                        <span class="order-list_date">18.09.2016</span>
-                    </p>
-                    <p class="order-list_place">Tortuga Restaurante
-                        <span class="order-list_time order-list_time--urgent">Urgent</span>
-                    </p>
-                    <p class="order-list_shipped">Shipped: 26сент. 2016г.</p>
-                </li>
-                <li class="orders-list_item">
-                    <p class="order-list_name">Order 7375
-                        <span class="order-list_date">06.10.2016</span>
-                    </p>
-                    <p class="order-list_place">Around the Horn
-                        <span class="order-list_time">In time</span>
-                    </p>
-                    <p class="order-list_shipped">Shipped: 14окт. 2016г.</p>
-                </li>
-                <li class="orders-list_item">
-                    <p class="order-list_name">Order 7311
-                        <span class="order-list_date">21.11.2016</span>
-                    </p>
-                    <p class="order-list_place">Alfrends Futterkiste
-                        <span class="order-list_time">In time</span>
-                    </p>
-                    <p class="order-list_shipped">Shipped: 25нояб. 2016г</p>
-                </li>
-                <li class="orders-list_item">
-                    <p class="order-list_name">Order 6858
-                        <span class="order-list_date">13.11.2016</span>
-                    </p>
-                    <p class="order-list_place">Tortuga Restaurante
-                        <span class="order-list_time">In time</span>
-                    </p>
-                    <p class="order-list_shipped">Shipped: 14нояб. 2016г</p>
-                </li>
-                <li class="orders-list_item">
-                    <p class="order-list_name">Order 6368
-                        <span class="order-list_date">13.11.2016</span>
-                    </p>
-                    <p class="order-list_place">Alfrends Futterkiste
-                        <span class="order-list_time">In time</span>
-                    </p>
-                    <p class="order-list_shipped">Shipped: 19сент. 2016г</p>
-                </li>
-                <li class="orders-list_item">
-                    <p class="order-list_name">Order 6189
-                        <span class="order-list_date">28.11.2016</span>
-                    </p>
-                    <p class="order-list_place">Berglunds snabbkop
-                        <span class="order-list_time">In time</span>
-                    </p>
-                    <p class="order-list_shipped">Shipped: 20нояб. 2016г</p>
-                </li>
-                <li class="orders-list_item">
-                    <p class="order-list_name">Order 7918
-                        <span class="order-list_date">18.09.2016</span>
-                    </p>
-                    <p class="order-list_place">Tortuga Restaurante
-                        <span class="order-list_time">In time</span>
-                    </p>
-                    <p class="order-list_shipped">Shipped: 26сент. 2016г</p>
-                </li>
-                <li class="orders-list_item">
-                    <p class="order-list_name">Order 7918
-                        <span class="order-list_date">18.09.2016</span>
-                    </p>
-                    <p class="order-list_place">Tortuga Restaurante
-                        <span class="order-list_time">In time</span>
-                    </p>
-                    <p class="order-list_shipped">Shipped: 26сент. 2016г</p>
-                </li>
-                <li class="orders-list_item">
-                    <p class="order-list_name">Order 7918
-                        <span class="order-list_date">18.09.2016</span>
-                    </p>
-                    <p class="order-list_place">Tortuga Restaurante
-                        <span class="order-list_time">In time</span>
-                    </p>
-                    <p class="order-list_shipped">Shipped: 26сент. 2016г</p>
-                </li>
-                <li class="orders-list_item">
-                    <p class="order-list_name">Order 7918
-                        <span class="order-list_date">18.09.2016</span>
-                    </p>
-                    <p class="order-list_place">Tortuga Restaurante
-                        <span class="order-list_time">In time</span>
-                    </p>
-                    <p class="order-list_shipped">Shipped: 26сент. 2016г</p>
-                </li>
+            <ul id="orders-list" class="orders-list">
             </ul>
 
             <footer class="orders-footer">
@@ -165,21 +65,12 @@
             <header class="info-header">
                 <p class="header_title">Order</p>
             </header>
-            <div class="general-info">
-                <div class="general-info_header">
-                    <p class="general-info_order-numb">Order 7918</p>
-                    <p class="general-info_price">150 935,13
-                        <span class="general-info_currency">EUR</span>
-                    </p>
+            <div class="general-info hidden">
+                <div id="general-info_header" class="general-info_header">
                 </div>
-                <ul class="general-info_list">
-                    <li class="geteral-info_item">
-                        <span>Customer: </span>Torqua Restaurante</li>
-                    <li class="geteral-info_item">
-                        <span>Ordered: </span>18 сент. 2016г.</li>
-                    <li class="geteral-info_item">
-                        <span>Shipped: </span>26 сент. 2016г.</li>
+                <ul id="general-info_list" class="general-info_list">
                 </ul>
+
                 <ul class="general-filter">
                     <li class="general-filter_item">
                         <label for="shipping-address" class="filter-deliv">
@@ -195,66 +86,15 @@
                     </li>
                 </ul>
             </div>
-            <div class="delivery">
+            <div class="delivery hidden">
                 <h3 class="delivery_title">Shipping Address</h3>
-                <ul class="deliv-list">
-                    <li class="deliv_item">
-                        <span class="deliv_param">Name:</span>EecellentParcel</li>
-                    <li class="deliv_item">
-                        <span class="deliv_param">Street:</span>Tottenham Court Road</li>
-                    <li class="deliv_item">
-                        <span class="deliv_param">ZIP Code / City:</span>N170AA London</li>
-                    <li class="deliv_item">
-                        <span class="deliv_param">Region:</span>Greater London</li>
-                    <li class="deliv_item">
-                        <span class="deliv_param">Country:</span>United Kingdom</li>
+                <ul id="deliv-list" class="deliv-list">
                 </ul>
             </div>
-            <div class="product-line">
-                <h3 class="product-line_title">Line Items(4)</h3>
-                <table class="line-items_table">
-                    <tr class="line-table_item">
-                        <th class="line-items_header">Products</th>
-                        <th class="line-items_header">Unit Price</th>
-                        <th class="line-items_header">Quantity</th>
-                        <th class="line-items_header">Total</th>
-                    </tr>
-                    <tr class="line-table_item">
-                        <td class="line-items_product">
-                            <span class="product_name">Aniseed Syrup</span>1412</td>
-                        <td class="line-items_price">
-                            <span class="items-price_value">65.89 </span>EUR</td>
-                        <td class="line-items_quantity">899</td>
-                        <td class="line-items_total">
-                            <span class="items-total_value">59 235,11</span> EUR</td>
-                    </tr>
-                    <tr class="line-table_item">
-                        <td class="line-items_product">
-                            <span class="product_name">Tunnbrod</span>5672</td>
-                        <td class="line-items_price">
-                            <span class="items-price_value">14.77 </span> EUR</td>
-                        <td class="line-items_quantity">2367</td>
-                        <td class="line-items_total">
-                            <span class="items-total_value">34 960,59</span> EUR</td>
-                    </tr>
-                    <tr class="line-table_item">
-                        <td class="line-items_product">
-                            <span class="product_name">Northwoods Cranberry Sauce </span>5046</td>
-                        <td class="line-items_price">
-                            <span class="items-price_value">61.69 </span>EUR</td>
-                        <td class="line-items_quantity">867</td>
-                        <td class="line-items_total">
-                            <span class="items-total_value">53 485,23 </span> EUR</td>
-                    </tr>
-                    <tr class="line-table_item">
-                        <td class="line-items_product">
-                            <span class="product_name">Camembert Pierrot </span>9505</td>
-                        <td class="line-items_price">
-                            <span class="items-price_value">3.07 </span>EUR</td>
-                        <td class="line-items_quantity">1060</td>
-                        <td class="line-items_total">
-                            <span class="items-total_value">3 254,20</span> EUR</td>
-                    </tr>
+            <div class="product-line hidden">
+                <h3 class="product-line_title">Line Items <span class="product-line_number"></span></h3>
+                <input type="text" class="product-line_input">
+                <table id='line-items_table' class="line-items_table">
                 </table>
             </div>
             <footer class="general-footer">
@@ -277,6 +117,27 @@
             </footer>
         </section>
     </div>
+    <script src="js/data.js"></script>
+    <script src="js/addElems.js"></script>
+    <script src="js/insertIntoDom.js"></script>
+    <script src="js/checkTime.js"></script>
+    <script src="js/showLayout.js"></script>
+    <script src="js/calcMoney.js"></script>
+    <script src="js/removeClass.js"></script>
+    <script src="js/showGeneralHeader.js"></script>
+    <script src="js/showCustomerInfo.js"></script>
+    <script src="js/showDeliveryInfo.js"></script>
+    <script src="js/removeChildsOfElem.js"></script>
+    <script src="js/showBodyOfOrder.js"></script>
+    <script src="js/showShippingAdress.js"></script>
+    <script src="js/showTable.js"></script>
+    <script src="js/toggleClass.js"></script>
+    <script src="js/showCurrentOrder.js"></script>
+    <script src="js/sortTable.js"></script>
+    
+    <script src="js/tableInputInitial.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
+

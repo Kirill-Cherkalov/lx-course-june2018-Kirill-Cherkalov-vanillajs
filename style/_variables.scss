@@ -2,5 +2,5 @@
  *$sprite_height calc height of sidebar layout
  *$products_heigh calc height of products (info-side)
 */
-$sprite_height: calc(100vh - 86px);
-$products_height: calc(100vh - 530px);
+$sprite_height: calc(100% - 83px);
+$products_height: calc(100vh - 430px);

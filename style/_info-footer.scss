@@ -1,13 +1,16 @@
 .general-footer {
     display: block;
+    position: sticky;
+    bottom: 0;
     width: 100%;
     background-color: #2f3b47;
+    z-index: 3;
 }
 
 .footer-list {
     list-style: none;
     min-height: 100%;
-    padding: 5px 0 5px 0;
+    padding: 6px 0 5px 0;
     margin: 0;
 }
 

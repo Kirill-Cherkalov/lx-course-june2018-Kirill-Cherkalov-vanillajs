@@ -1,7 +1,10 @@
 .orders-list {
     // height equally  $sprite_height but min-height is 680px
-    min-height: 680px;
+    min-height: 690px;
+    box-sizing: border-box;
     height: $sprite_height;
+    display: flex;
+    flex-direction: column;
     overflow-y: scroll;
     list-style: none;
     min-width: 265px;
@@ -42,6 +45,14 @@
 .orders-list_item {
     padding: 10px 10px;
     border-top: 1px solid lightgrey;
+    cursor: pointer;
+    &:hover{
+    background-color: #eff4f8;
+    }
+}
+
+.orders-list_item--active{
+    background-color: #e8eff7;
 }
 
 .order-list_shipped {

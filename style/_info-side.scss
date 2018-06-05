@@ -1,8 +1,14 @@
 .info-side {
-    min-width: 590px;
+    min-width: 890px;
+    min-height: 100vh;
     width: 100%;
     border-left: 2px solid #ebebeb;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: #eff4f8;
+}
+
+.hidden {
+    display: none;
 }

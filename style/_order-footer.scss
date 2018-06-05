@@ -1,6 +1,8 @@
 .orders-footer {
     display: block;
     width: 100%;
+    position: sticky;
+    bottom: 0;
     background-color: #2f3b47;
     .footer-list {
         list-style: none;
