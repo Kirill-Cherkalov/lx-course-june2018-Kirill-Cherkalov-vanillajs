@@ -1,0 +1,78 @@
+.modal-product,
+.modal-order {
+    z-index: 200;
+    background: #fff;
+    left: calc(100vw/2 - 200px);
+    position: fixed;
+    width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, .25);
+    box-sizing: border-box;
+    top: calc(100vh/2 - 190px);
+}
+
+.modal-product_form,
+.modal-order_form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 10px;
+    justify-content: flex-end;
+}
+
+.modal-roduct_label,
+.modal-order_label {
+    margin: 10px 0;
+    padding: 0;
+    text-align: end;
+    padding-right: 90px;
+}
+
+.modal-product_input,
+.modal-order_input {
+    padding: 2px 2px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-product_button--close,
+.modal-order_button--close {
+    border: none;
+    background-color: transparent;
+    margin-left: auto;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.5;
+    }
+    &:active {
+        opacity: 0.8;
+        top: 22px;
+    }
+}
+
+.modal-product_button--add,
+.modal-order_button--add {
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #e8e5e8 5%, #f6f6f6 100%);
+	background-color:#e8e5e8;
+	border-radius:14px;
+	border:1px solid #e3dae3;
+    display:block;
+	cursor:pointer;
+	color:#666666;
+	padding:6px 24px;
+    text-shadow:0px 1px 0px #ffffff;
+    &:hover{
+        background:linear-gradient(to bottom, #f6f6f6 5%, #e8e5e8 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#e8e5e8',GradientType=0);
+	background-color:#f6f6f6;
+    }
+    &:active{
+        position:relative;
+        top:1px;
+    }
+    margin: 10px 20px 10px;
+    margin-left: auto;
+}

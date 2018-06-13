@@ -1,24 +1,31 @@
 .general-footer {
     display: block;
+    position: -webkit-sticky;
     position: sticky;
     bottom: 0;
+    
     width: 100%;
     background-color: #2f3b47;
     z-index: 3;
+    box-sizing: border-box;
 }
 
 .footer-list {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     list-style: none;
-    min-height: 100%;
-    padding: 6px 0 5px 0;
+    padding: 5px 0 3px 0;
     margin: 0;
 }
 
 .general-footer_buttoon {
-    height: 17px;
-    display: block;
-    width: 17px;
+    height: 16px;
+    width: 16px;
     margin-right: 15px;
     margin-left: auto;
     cursor: pointer;
+    &:hover{
+        opacity: 0.5;
+    }
 }

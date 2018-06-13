@@ -38,27 +38,27 @@
     background-color: #fafafa;
     color: #000;
     position: relative;
-    &::after {
+    cursor: pointer;
+    .line-items_button {
         content: "";
         position: absolute;
         height: 15px;
         width: 15px;
         background-size: cover;
+        background-color: transparent;
         top: 6px;
         opacity: 0.5;
-        
-    }
-    &:hover {
-        &::after {
+        border: none;
+        cursor: pointer;
+        &:hover {
             opacity: 1;
-            cursor: pointer;
         }
     }
     &:nth-child(1) {
         width: 500px;
         min-width: 250px;
-        &::after {
-            background-image: url('../img/sort-by-alphabet.svg');
+        .line-items_button--product {
+            background-image: url('../img/sort-reverse-alphabetical-order.svg');
             left: 85px;
         }
     }
@@ -66,7 +66,7 @@
         width: 130px;
         min-width: 90px;
         text-align: end;
-        &::after {
+        .line-items_button--price {
             background-image: url('../img/sort-by-order.svg');
             right: -17px;
             z-index: 3;
@@ -75,21 +75,24 @@
     &:nth-child(3) {
         width: 200px;
         min-width: 100px;
-        &::after {
+        .line-items_button--quantity {
             background-image: url('../img/sort-by-order.svg');
-            z-index: 3;
-            // right: -17px;
+            z-index: 3; // right: -17px;
         }
     }
     &:nth-child(4) {
         width: 500px;
         min-width: 200px;
-        &::after {
+        .line-items_button--total {
             background-image: url('../img/sort-by-order.svg');
             z-index: 3;
-            right: 50px;
+            right: 80px;
         }
     }
+}
+
+.line-items_header--active {
+    opacity: 1;
 }
 
 .line-table_item {
@@ -98,7 +101,7 @@
 
 .line-items_header:last-child,
 .line-items_total {
-    padding-right: 10px;
+    padding-right: 30px;
 }
 
 .line-items_price {
@@ -141,6 +144,16 @@
     font-weight: 700;
 }
 
+.product-line_list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .product-line_input {
     width: 400px;
     padding: 6px 5px;
@@ -148,4 +161,28 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+.product-line_button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 20px;
+    &:hover{
+        opacity: 0.5;
+    }
+}
+
+.line-row_button{
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    border: none;
+    background-image: url('../img/trash.svg');
+    background-size: cover;
+    background-color: transparent;
+    cursor: pointer;
+    &:hover{
+        opacity: 0.5;
+    }
 }

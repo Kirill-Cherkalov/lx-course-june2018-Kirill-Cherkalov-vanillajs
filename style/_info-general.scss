@@ -30,7 +30,6 @@
 }
 
 input[type="radio"].visually_hidden {
-    //hide input type="radio"
     position: absolute;
     width: 1px;
     height: 1px;
@@ -75,6 +74,11 @@ input[type="radio"].visually_hidden {
 .general-filter_item:nth-child(2) input[type="radio"]+.radio-indicator {
     background-image: url("../img/user.svg");
     left: 80px;
+}
+
+.general-filter_item:nth-child(3) input[type="radio"]+.radio-indicator {
+    background-image: url("../img/worldwide.svg");
+    left: 160px;
 }
 
 .general-filter_item:nth-child(2) input[type="radio"]:checked+.radio-indicator,

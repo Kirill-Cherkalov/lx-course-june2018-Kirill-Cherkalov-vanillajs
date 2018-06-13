@@ -1,5 +1,4 @@
-function insertIntoDom(domElem1, domElem2, domElem3) {
-    domElem1.appendChild(domElem2);
-    domElem2.appendChild(domElem3);
-    return;
+function insertIntoDom() {
+    arguments[0].appendChild(arguments[1]);
+    arguments[1].appendChild(arguments[2]);
 }

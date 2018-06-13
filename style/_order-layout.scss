@@ -23,6 +23,7 @@
     }
 }
 
+
 .order-list_name,
 .order-list_place,
 .order-list_shipped {
@@ -38,6 +39,7 @@
 }
 
 .order-list_date {
+    width: 155px;
     @include large-text;
     font-weight: 500;
 }

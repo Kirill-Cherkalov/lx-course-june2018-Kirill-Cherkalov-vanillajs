@@ -8,9 +8,17 @@
     <title>Orders</title>
     <link href="https://fonts.googleapis.com/css?family=PT+Serif|Tajawal:400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="style/index.css">
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 
 <body>
+    <style>
+        #map {
+            width: 100%;
+            height: 90%;
+        }
+    </style>
+
     <div class="wrapper container">
         <section class="orders-side">
             <header class="orders-header">
@@ -18,14 +26,49 @@
                     <span class="orders-title_numb"></span>
                 </p>
                 <input type="text" class="order-side_input" placeholder="Поиск">
+                <button class="header_button header_button--back"></button>
+                <button class="header_button header_button--search"></button>
+                <button class="header_button header_button--reload"></button>
             </header>
             <ul id="orders-list" class="orders-list">
             </ul>
+            <script class="order-template" type="html/template">
+                <p class="order-list_name">
+                    Order {{ORDER_ID}}
+                    <span class="order-list_date">
+                        {{ORDER_DATE}}
+                    </span>
+                </p>
+                <p class="order-list_place">
+                    {{CUSTOMER}}
+                    <span class="{{ORDER_STATUS_CLASS}}">
+                        {{ORDER_STATUS}}
+                    </span>
+                </p>
+                <p class="order-list_shipped">
+                    Shipped: {{ORDER_SHIPPED}}
+                </p>
+            </script>
 
             <footer class="orders-footer">
                 <ul class="footer-list">
                     <li class="footer-list_item">
-                        <a href="" class="orders-footer_buttoon orders-footer_buttoon--filter">
+                        <a class="orders-footer_button orders-footer_button--filter">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                                viewBox="0 0 491.86 491.86" style="enable-background:new 0 0 491.86 491.86;" xml:space="preserve"
+                                width="15px" height="15px">
+                                <g>
+                                    <g>
+                                        <path d="M465.167,211.614H280.245V26.691c0-8.424-11.439-26.69-34.316-26.69s-34.316,18.267-34.316,26.69v184.924H26.69    C18.267,211.614,0,223.053,0,245.929s18.267,34.316,26.69,34.316h184.924v184.924c0,8.422,11.438,26.69,34.316,26.69    s34.316-18.268,34.316-26.69V280.245H465.17c8.422,0,26.69-11.438,26.69-34.316S473.59,211.614,465.167,211.614z"
+                                            fill="#fff" />
+                                    </g>
+                                </g>
+                            </svg>
+
+                        </a>
+                    </li>
+                    <li class="footer-list_item">
+                        <a class="orders-footer_button orders-footer_button--filter">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
                                 viewBox="0 0 247.46 247.46" style="enable-background:new 0 0 247.46 247.46;" xml:space="preserve"
                                 width="15px" height="15px">
@@ -35,7 +78,7 @@
                         </a>
                     </li>
                     <li class="footer-list_item">
-                        <a href="" class="orders-footer_buttoon orders-footer_buttoon--settings">
+                        <a class="orders-footer_button orders-footer_button--settings">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
                                 viewBox="0 0 341.333 341.333" style="enable-background:new 0 0 341.333 341.333;" xml:space="preserve"
                                 width="13px" height="13px">
@@ -68,9 +111,39 @@
             <div class="general-info hidden">
                 <div id="general-info_header" class="general-info_header">
                 </div>
+                <script class="general-header-template" type="html/template">
+                    <p class="general-info_order-numb">
+                        Order {{ORDER_ID}}
+                    </p>
+                    <p class="general-info_price">
+                        {{ORDER_PRICE}}
+                        <span class="general-info_currency">
+                            EUR
+                        </span>
+                    </p>
+                </script>
                 <ul id="general-info_list" class="general-info_list">
                 </ul>
-
+                <script class="general-info-template" type="html/template">
+                    <li class="geteral-info_item">
+                        Customer:
+                        <span class="general-info_param">
+                            {{CUSTOMER}}
+                        </span>
+                    </li>
+                    <li class="geteral-info_item">
+                        Ordered:
+                        <span class="general-info_param">
+                            {{ORDER_DATE}}
+                        </span>
+                    </li>
+                    <li class="geteral-info_item">
+                        Shipped:
+                        <span class="general-info_param">
+                            {{ORDER_SHIPPED}}
+                        </span>
+                    </li>
+                </script>
                 <ul class="general-filter">
                     <li class="general-filter_item">
                         <label for="shipping-address" class="filter-deliv">
@@ -84,23 +157,168 @@
                             <span class="radio-indicator"></span>
                         </label>
                     </li>
+                    <li class="general-filter_item">
+                        <label for="maps" class="filter-map">
+                            <input class="visually_hidden" type="radio" id="maps" name="filter">
+                            <span class="radio-indicator"></span>
+                        </label>
+                    </li>
                 </ul>
             </div>
             <div class="delivery hidden">
                 <h3 class="delivery_title">Shipping Address</h3>
-                <ul id="deliv-list" class="deliv-list">
+                <form id="delivery-form" class="delivery-form">
+
+                </form>
+                <div class="some" style="height: 200px; z-index: 200; display: none;">
+                    <div id="map"></div>
+                </div>
+                <script class="delivery-info-template" type="html/template">
+                    <label class="delivery-form_label">
+                        {{PARAM_1}}
+                        <input class="delivery-form_input" value="{{VALUE_PARAM_1}}" disabled requred>
+                    </label>
+                    <label class="delivery-form_label">
+                        {{PARAM_2}}
+                        <input class="delivery-form_input" value="{{VALUE_PARAM_2}}" disabled requred>
+                    </label>
+                    <label class="delivery-form_label">
+                        {{PARAM_3}}
+                        <input class="delivery-form_input" value="{{VALUE_PARAM_3}}" disabled requred>
+                    </label>
+                    <label class="delivery-form_label">
+                        {{PARAM_4}}
+                        <input class="delivery-form_input" value="{{VALUE_PARAM_4}}" disabled requred>
+                    </label>
+                    <label class="delivery-form_label">
+                        {{PARAM_5}}
+                        <input class="delivery-form_input" value="{{VALUE_PARAM_5}}" disabled requred>
+                    </label>
+                </script>
+                <script class="map-template" type="html/template">
+                    <div id="some" style="height: 200px; z-index: 200;">
+                        <div id="map"></div>
+                    </div>
+                </script>
+                <ul class="delivery-btn_list">
+                    <li class="delivery-btn_item">
+                        <button type="button" class="delivery_button delivery_button--edit">Edit</button>
+                    </li>
+                    <li class="delivery-btn_item">
+                        <button type="submit" class="delivery_button delivery_button--save">Save</button>
+                    </li>
                 </ul>
             </div>
             <div class="product-line hidden">
-                <h3 class="product-line_title">Line Items <span class="product-line_number"></span></h3>
-                <input type="text" class="product-line_input">
+                <h3 class="product-line_title">Line Items
+                    <span class="product-line_number"></span>
+                </h3>
+                <ul class="product-line_list">
+                    <li class="product-line_item">
+                        <input type="text" class="product-line_input">
+                    </li>
+                    <li class="product-line_item">
+                        <button class="product-line_button">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                                viewBox="0 0 491.86 491.86" style="enable-background:new 0 0 491.86 491.86;" xml:space="preserve"
+                                width="20px" height="20px">
+                                <g>
+                                    <g>
+                                        <path d="M465.167,211.614H280.245V26.691c0-8.424-11.439-26.69-34.316-26.69s-34.316,18.267-34.316,26.69v184.924H26.69    C18.267,211.614,0,223.053,0,245.929s18.267,34.316,26.69,34.316h184.924v184.924c0,8.422,11.438,26.69,34.316,26.69    s34.316-18.268,34.316-26.69V280.245H465.17c8.422,0,26.69-11.438,26.69-34.316S473.59,211.614,465.167,211.614z"
+                                            fill="#006DF0" />
+                                    </g>
+                                </g>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
                 <table id='line-items_table' class="line-items_table">
                 </table>
+                <script class="line-items_table-header-template" type="html/template">
+                    <tr class="line-table_item">
+                        <th class="line-items_header line-items_header--product">
+                            Products
+                            <button class="line-items_button line-items_button--product"></button>
+                        </th>
+                        <th class="line-items_header line-items_header--price">
+                            Unit Price
+                            <button class="line-items_button line-items_button--price"></button>
+                        </th>
+                        <th class="line-items_header line-items_header--quantity">
+                            Quantity
+                            <button class="line-items_button line-items_button--quantity"></button>
+                        </th>
+                        <th class="line-items_header line-items_header--total">
+                            Total
+                            <button class="line-items_button line-items_button--total"></button>
+                        </th>
+                    </tr>
+                </script>
+                <script class="line-items_table-item-template" type="html/template">
+                    <!-- <tr class="line-table_item"> -->
+                    <td class="line-items_product">
+                        <span class="product_name">
+                            {{NAME}}
+                        </span>
+                        {{ID}}
+                    </td>
+                    <td class="line-items_price">
+                        <span class="items-price_value">
+                            {{VALUE}}
+                        </span>
+                        {{CURRENCY}}
+                    </td>
+                    <td class="line-items_quantity">
+                        {{QUANTITY}}
+                    </td>
+                    <td class="line-items_total">
+                        <span class="items-total_value">
+                            {{TOTAL_VALUE}}
+                        </span>
+                        {{CURRENCY}}
+                        <button class="line-row_button"></button>
+                    </td>
+                    <!-- </tr> -->
+                </script>
+
             </div>
             <footer class="general-footer">
                 <ul class="footer-list">
                     <li class="footer-list_item">
-                        <a href="" class="general-footer_buttoon">
+                        <a class="general-footer_buttoon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px"
+                                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="17px"
+                                height="17px">
+                                <g>
+                                    <g>
+                                        <path d="M465.423,48.241h-137.61V23.955C327.813,10.746,317.082,0,303.893,0h-95.785c-13.19,0-23.92,10.746-23.92,23.955V48.24    H46.577c-6.655,0-12.049,5.394-12.049,12.049c0,6.655,5.394,12.049,12.049,12.049h22.332l15.228,396.396    C85.069,492.995,104.818,512,129.099,512h253.804c24.281,0,44.03-19.006,44.96-43.267l15.228-396.396h22.332    c6.653,0,12.049-5.394,12.049-12.049C477.472,53.635,472.078,48.241,465.423,48.241z M208.285,24.097h95.43v24.143h-95.43V24.097z     M403.784,467.809c-0.433,11.268-9.605,20.094-20.882,20.094H129.099c-11.276,0-20.448-8.827-20.882-20.095L93.025,72.338h325.952    L403.784,467.809z"
+                                            fill="#FFFFFF" />
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M182.63,181.571c-0.127-6.575-5.494-11.817-12.042-11.817c-0.078,0-0.158,0-0.236,0.002    c-6.652,0.128-11.943,5.626-11.815,12.278l3.781,196.634c0.126,6.575,5.495,11.817,12.042,11.817c0.078,0,0.158,0,0.236-0.002    c6.653-0.128,11.943-5.624,11.815-12.278L182.63,181.571z"
+                                            fill="#FFFFFF" />
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M255.998,169.753c-6.654,0-12.049,5.394-12.049,12.049v196.634c0,6.654,5.394,12.049,12.049,12.049    c6.655,0,12.049-5.394,12.049-12.049V181.802C268.047,175.148,262.653,169.753,255.998,169.753z"
+                                            fill="#FFFFFF" />
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M341.645,169.756c-6.628-0.147-12.151,5.162-12.278,11.815l-3.781,196.634c-0.129,6.653,5.162,12.15,11.815,12.278    c0.078,0.001,0.158,0.002,0.236,0.002c6.546,0,11.916-5.244,12.042-11.817l3.781-196.634    C353.588,175.38,348.299,169.883,341.645,169.756z"
+                                            fill="#FFFFFF" />
+                                    </g>
+                                </g>
+
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="footer-list_item">
+                        <a class="general-footer_buttoon">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
                                 viewBox="0 0 426.667 426.667" style="enable-background:new 0 0 426.667 426.667;" xml:space="preserve"
                                 width="17px" height="17px">
@@ -113,31 +331,95 @@
                             </svg>
                         </a>
                     </li>
+
                 </ul>
             </footer>
         </section>
+        <aside class="modal modal-product hidden">
+            <button class="modal-product_button modal-product_button--close">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.9 21.9" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="15px" height="15px" enable-background="new 0 0 21.9 21.9">
+                    <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"
+                    />
+                </svg>
+            </button>
+            <form class="modal-product_form">
+                <label for="" class="modal-roduct_label modal-roduct_label--name">
+                    Product name:
+                    <input type="text" class="modal-product_input modal-product_input--name">
+                </label>
+                <label for="" class="modal-roduct_label modal-roduct_label--price">
+                    Unit Price:
+                    <input type="text" class="modal-product_input modal-product_input--price">
+                </label>
+                <label for="" class="modal-roduct_label modal-roduct_label--quantity">
+                    Quantity:
+                    <input type="text" class="modal-product_input modal-product_input--quantity">
+                </label>
+                <label for="" class="modal-roduct_label modal-roduct_label--currency">
+                    Currency:
+                    <input type="text" class="modal-product_input modal-product_input--currency">
+                </label>
+            </form>
+            <button class="modal-product_button modal-product_button--add">
+                Add product
+            </button>
+        </aside>
+        <aside class="modal modal-order hidden">
+            <button class="modal-order_button modal-order_button--close">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.9 21.9" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="15px" height="15px" enable-background="new 0 0 21.9 21.9">
+                    <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"
+                    />
+                </svg>
+            </button>
+            <form class="modal-order_form">
+                <label for="" class="modal-order_label modal-order_label--customer">
+                    Customer:
+                    <input type="text" class="modal-order_input modal-order_input--customer">
+                </label>
+                <label for="" class="modal-order_label modal-order_label--status">
+                    Status:
+                    <input type="text" class="modal-order_input modal-order_input--status">
+                </label>
+                <label for="" class="modal-order_label modal-order_label--createdAt">
+                    Created at:
+                    <input type="text" class="modal-order_input modal-order_input--createdAt">
+                </label>
+                <label for="" class="modal-order_label modal-order_label--shippedAt">
+                    Shipped at:
+                    <input type="text" class="modal-order_input modal-order_input--shippedAt">
+                </label>
+            </form>
+            <button class="modal-order_button modal-order_button--add">
+                Add order
+            </button>
+        </aside>
+
     </div>
+
+    <script src="js/model.js"></script>
     <script src="js/data.js"></script>
     <script src="js/addElems.js"></script>
     <script src="js/insertIntoDom.js"></script>
-    <script src="js/checkTime.js"></script>
+    <!-- <script src="js/checkTime.js"></script> -->
     <script src="js/showLayout.js"></script>
-    <script src="js/calcMoney.js"></script>
+    <!-- <script src="js/calcMoney.js"></script> -->
     <script src="js/removeClass.js"></script>
     <script src="js/showGeneralHeader.js"></script>
-    <script src="js/showCustomerInfo.js"></script>
+    <!-- <script src="js/showCustomerInfo.js"></script> -->
     <script src="js/showDeliveryInfo.js"></script>
     <script src="js/removeChildsOfElem.js"></script>
     <script src="js/showBodyOfOrder.js"></script>
-    <script src="js/showShippingAdress.js"></script>
+    <!-- <script src="js/showShippingAdress.js"></script> -->
     <script src="js/showTable.js"></script>
     <script src="js/toggleClass.js"></script>
     <script src="js/showCurrentOrder.js"></script>
     <script src="js/sortTable.js"></script>
-    
     <script src="js/tableInputInitial.js"></script>
+    <script src="js/modal.js"></script>
+
     <script src="js/main.js"></script>
 </body>
 
 </html>
-

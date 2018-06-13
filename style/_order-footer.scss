@@ -15,11 +15,17 @@
     }
 }
 
-.orders-footer_buttoon {
-    margin-right: 30px;
+.footer-list_item {
+    &:hover{
+        opacity: 0.5;
+    }
+}
+
+.orders-footer_button {
+    margin-right: 20px;
     cursor: pointer;
 }
 
-.orders-footer_buttoon--settings {
+.orders-footer_button--settings {
     margin-right: 15px;
 }

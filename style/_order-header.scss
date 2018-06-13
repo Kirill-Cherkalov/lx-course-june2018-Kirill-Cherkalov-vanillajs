@@ -1,5 +1,4 @@
 .orders-header {
-    // min-height is 55px
     min-height: 55px;
     padding-bottom: 2px;
     text-align: center;
@@ -8,41 +7,42 @@
     .orders-side_title {
         margin: 0;
         padding: 5px 0 10px 0;
-        &::before {
-            content: "";
-            position: absolute;
-            left: 10px;
-            top: 6px;
-            width: 15px;
-            height: 15px;
-            background-image: url('../img/left-chevron.svg');
-            cursor: pointer;
-        }
     }
     .order-side_input {
         box-sizing: border-box;
         padding: 1px 65px 1px 10px;
         width: 98%;
-        
         &::-webkit-input-placeholder {
             font-style: italic;
         }
     }
-    &::after,
-    &::before {
-        content: "";
-        position: absolute;
-        bottom: 4px;
-        right: 35px;
-        width: 17px;
-        height: 17px;
-        background-image: url('../img/search.svg');
-        background-size: cover;
-        background-color: transparent;
-        cursor: pointer;
-    }
-    &::before {
-        right: 10px;
-        background-image: url('../img/update-arrows.svg');
-    }
+}
+
+.header_button {
+    position: absolute;
+    content: "";
+    height: 17px;
+    width: 17px;
+    border: none;
+    background-image: url('../img/left-chevron.svg');
+    background-color: transparent;
+    background-size: cover;
+    cursor: pointer;
+    top: 6px;
+}
+
+.header_button--back {
+    left: 10px;
+}
+
+.header_button--search {
+    background-image: url('../img/search.svg');
+    top: 35px;
+    right: 45px;
+}
+
+.header_button--reload {
+    background-image: url('../img/update-arrows.svg');
+    top: 35px;
+    right: 15px;
 }

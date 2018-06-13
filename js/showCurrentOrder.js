@@ -1,12 +1,15 @@
 /**
  * @param {required parameter(number). Equal current Order number} i 
  */
-function showCurrentOrder(i) {
+
+function showCurrentOrder(matchesArray) {
     var order = doc.querySelectorAll('.orders-list_item');
-    for (var j = 0; j < Orders.length; j++) {
-        //assign all orders css style "order: 1"
-        order[j].style.order = '1';
-    }
-    //assign currnent order css style "order: 0"
-    order[i].style.order = '0';
+    doc.querySelectorAll('.orders-title_numb')[0].innerHTML = matchesArray.length;
+    order.forEach(function(elem){
+        elem.classList.add('hidden');
+    });
+
+    matchesArray.forEach(function(elem){
+        order[elem].classList.remove('hidden');
+    })
 }

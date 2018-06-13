@@ -4,32 +4,32 @@
  */
 function toggleClass() {
     var state = false;
-    return function (collection, i) {
+    var previoustOrder = -1;
+    return function (collection, i, orderData) {
         if (!state) {
             collection[i].classList.add('orders-list_item--active');
-            showGeneralHeader(i);
-            showBodyOfOrder(i);
-            showShippingAdress(i);
-            removeClass('hidden');
-            showTable(i);
-            sortTable(i);
+            removeClass(['.general-info', '.delivery', '.product-line'], 'hidden');
             state = true;
+            previoustOrder = i;
+            return true;
         } else {
-            for (var j = 0; j < collection.length; j++) {
-                if (collection[j].classList.contains('orders-list_item--active')) {
-                    collection[j].classList.remove('orders-list_item--active');
-                    removeChildsOfElem('general-info_header');
-                    removeChildsOfElem('general-info_list');
-                    removeChildsOfElem('deliv-list');
-                    removeChildsOfElem('line-items_table');
-                    collection[i].classList.add('orders-list_item--active');
-                    showGeneralHeader(i);
-                    showBodyOfOrder(i);
-                    showShippingAdress(i);
-                    showTable(i);
-                    sortTable(i);
-                }
+            if (previoustOrder === i) {
+                return false;
+            } else {
+                collection.forEach(function (elem) {
+                    elem.classList.contains('orders-list_item--active') ? elem.classList.remove('orders-list_item--active') : null;
+                });
+                // removeChildsOfElem('general-info_header');
+                // removeChildsOfElem('general-info_list');
+                // removeChildsOfElem('delivery-form');
+                // removeChildsOfElem('line-items_table');
+                collection[i].classList.add('orders-list_item--active');
+                doc.querySelectorAll('.product-line_input')[0].value = '';
+                previoustOrder = i;
+                return true;
             }
         }
     }
 }
+
+

@@ -35,14 +35,12 @@ function tableInputInitial(j) {
  * @param {array} array 
  */
 function sortMachesArray(array) {
-    var obj = {},
-        result = [];
+    var obj = {};
     //the property of the object is unique
-    for (var i = 0; i < array.length; i++) {
-        obj[array[i]] = true;
-    }
-    for (key in obj) {
-        result.push(+key);
-    }
-    return result;
+
+    array.forEach(function(elem){
+        obj[elem] = true;
+    });
+
+    return Object.keys(obj);
 }
